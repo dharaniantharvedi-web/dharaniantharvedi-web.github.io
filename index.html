@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Angular developer for part-time remote work: Angular upgrades, micro-frontends with Nx, and feature development.">
+<title>Dharani Antharvedi</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@500;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Layout: one left-aligned column (max 70rem) inside a padded page. The hero pairs a thesis with a shell-and-remotes sketch; work, experience and section heads share a narrow mono meta rail beside the body text. */
+:root {
+  --paper: #F5F5F9;
+  --surface: #FFFFFF;
+  --ink: #1C1B33;
+  --muted: #5D5B78;
+  --line: #DFDEEA;
+  --rule: #B7B5CC;
+  --accent: #B4234F;
+  --accent-soft: #F7E4EB;
+  --ok: #1F7A55;
+  --font-display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3125rem;
+  --step-2: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
+  --step-3: clamp(2.25rem, 1.4rem + 3.6vw, 3.75rem);
+  --rail: 13rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #13121F;
+    --surface: #1B1A2B;
+    --ink: #ECEBF6;
+    --muted: #A6A4C0;
+    --line: #2C2A42;
+    --rule: #4A4866;
+    --accent: #F06C93;
+    --accent-soft: #3A1D2B;
+    --ok: #4FC48F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #13121F;
+  --surface: #1B1A2B;
+  --ink: #ECEBF6;
+  --muted: #A6A4C0;
+  --line: #2C2A42;
+  --rule: #4A4866;
+  --accent: #F06C93;
+  --accent-soft: #3A1D2B;
+  --ok: #4FC48F;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+.page {
+  max-width: calc(70rem + 96px);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: 0 2rem;
+}
+
+/* Header */
+.site-head {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  background: var(--paper);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--ink);
+}
+.site-head ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+.site-head ul a { color: var(--muted); text-decoration: none; }
+.site-head ul a:hover { color: var(--ink); }
+@media (max-width: 560px) { .site-head .opt { display: none; } }
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+@media (max-width: 880px) { .hero { grid-template-columns: minmax(0, 1fr); } }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-3);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  margin: 0 0 1.25rem;
+  max-width: 15ch;
+  text-wrap: balance;
+}
+h1 em { font-style: normal; color: var(--accent); }
+.lede { max-width: 34rem; margin: 0 0 1.75rem; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.975rem;
+  line-height: 1.2;
+  padding: 0.72rem 1.15rem;
+  border-radius: 6px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
+.facts {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  max-width: 34rem;
+}
+.facts > div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; }
+.facts dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  padding-top: 0.15rem;
+}
+.facts dd { margin: 0; font-size: 0.975rem; line-height: 1.5; }
+.dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--ok);
+  margin-right: 0.45rem;
+  vertical-align: 0.1em;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 22%, transparent);
+}
+
+/* Architecture sketch */
+.arch {
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  min-width: 0;
+}
+.arch svg { display: block; width: 100%; height: auto; max-width: 100%; }
+.arch figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+  margin-top: 0.85rem;
+  line-height: 1.55;
+}
+.d-label { font-family: var(--font-mono); font-size: 12px; fill: var(--muted); }
+.d-title { font-family: var(--font-display); font-weight: 700; font-size: 18px; fill: var(--ink); }
+.d-name { font-family: var(--font-display); font-weight: 700; font-size: 16px; fill: var(--ink); }
+.d-shell { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.d-remote { fill: var(--surface); stroke: var(--rule); stroke-width: 1.5; }
+.d-shared { fill: var(--paper); stroke: var(--rule); stroke-width: 1; stroke-dasharray: 4 4; }
+.d-link { fill: none; stroke: var(--rule); stroke-width: 1.5; }
+.d-dep { fill: none; stroke: var(--rule); stroke-width: 1; stroke-dasharray: 3 4; }
+.d-flow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1 15;
+  animation: flow 1.6s linear infinite;
+}
+@keyframes flow { to { stroke-dashoffset: -32; } }
+@media (prefers-reduced-motion: reduce) { .d-flow { animation: none; } }
+
+/* Sections */
+section { padding-block: clamp(3rem, 7vw, 5rem); border-top: 1px solid var(--line); scroll-margin-top: 4.5rem; }
+.sec-head {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  gap: 0.5rem 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.rail-label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  padding-top: 0.55rem;
+  margin: 0;
+}
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-2);
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+  margin: 0 0 0.75rem;
+  text-wrap: balance;
+}
+.sec-intro { color: var(--muted); max-width: 38rem; margin: 0; }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--accent-soft);
+  color: var(--ink);
+  padding: 0.08em 0.35em;
+  border-radius: 4px;
+}
+
+/* Services */
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem 2.5rem; }
+@media (max-width: 900px) { .services { grid-template-columns: minmax(0, 1fr); } }
+.service {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--ink);
+  min-width: 0;
+}
+.service h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  line-height: 1.25;
+  margin: 0;
+}
+.service p { margin: 0; }
+.service .scope {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+.aside-note { margin: 2.5rem 0 0; color: var(--muted); max-width: 40rem; }
+
+/* Work */
+.case, .xp-row {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  gap: 0.75rem 2.5rem;
+  border-top: 1px solid var(--line);
+}
+.case { padding-block: 2rem; }
+.case-meta {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+  line-height: 1.45;
+}
+.case-meta .when { color: var(--accent); }
+.case-body { min-width: 0; }
+.case h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.case p { margin: 0 0 0.85rem; max-width: 40rem; }
+.stack {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+  line-height: 1.55;
+}
+.earlier { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
+.earlier li { display: grid; gap: 0.2rem; }
+.earlier strong { font-family: var(--font-display); font-weight: 700; }
+
+/* Experience */
+.xp { list-style: none; margin: 0; padding: 0; }
+.xp-row { padding-block: 1.1rem; gap: 0.25rem 2.5rem; }
+.xp-date {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.2rem;
+}
+.xp-role { font-family: var(--font-display); font-weight: 700; display: block; }
+.xp-org { color: var(--muted); }
+
+@media (max-width: 760px) {
+  .sec-head, .case, .xp-row { grid-template-columns: minmax(0, 1fr); }
+  .rail-label { padding-top: 0; }
+}
+
+/* Toolkit */
+.kit { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem 2.5rem; margin: 0; }
+@media (max-width: 900px) { .kit { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .kit { grid-template-columns: minmax(0, 1fr); } }
+.kit > div { border-top: 1px solid var(--line); padding-top: 0.9rem; min-width: 0; }
+.kit dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.kit dd { margin: 0.4rem 0 0; }
+
+/* Contact */
+.contact h2 { font-size: var(--step-3); line-height: 1.05; letter-spacing: -0.028em; max-width: 16ch; margin-bottom: 1rem; }
+.contact .sec-intro { color: var(--ink); }
+.brief {
+  display: grid;
+  gap: 0;
+  margin: 2rem 0 0;
+  max-width: 44rem;
+  border-top: 2px solid var(--ink);
+}
+.brief > div {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 0.25rem 1.5rem;
+  padding-block: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+.brief dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  padding-top: 0.2rem;
+}
+.brief dd { margin: 0; }
+@media (max-width: 560px) { .brief > div { grid-template-columns: minmax(0, 1fr); } }
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1.5rem 0.5rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="site-head">
+    <a class="brand" href="#top">Dharani Antharvedi</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li class="opt"><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li class="opt"><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Hire me</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Angular developer · India (IST) · Remote</p>
+        <h1>I build and <em>modernize</em> large Angular applications.</h1>
+        <p class="lede">I help product teams split big Angular apps into micro-frontends with Nx, upgrade old versions to current Angular, and ship features as a dependable part-time engineer. I have built with Angular since 2019 and work on an Angular 20 micro-frontend platform today.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contact">How to hire me</a>
+          <a class="btn" href="#work">See selected work</a>
+        </div>
+        <dl class="facts">
+          <div>
+            <dt>Status</dt>
+            <dd><span class="dot" aria-hidden="true"></span>Open to part-time remote contracts</dd>
+          </div>
+          <div>
+            <dt>Hours</dt>
+            <dd>Up to 30 a week in IST evenings, which overlap US East Coast mornings and UK afternoons.</dd>
+          </div>
+          <div>
+            <dt>Shipped on</dt>
+            <dd>Angular 7, 9, 14 and 20</dd>
+          </div>
+        </dl>
+      </div>
+
+      <figure class="arch">
+        <svg viewBox="0 0 440 340" role="img" aria-labelledby="arch-title arch-desc">
+          <title id="arch-title">Micro-frontend architecture sketch</title>
+          <desc id="arch-desc">A shell application connected to three remote applications named orders, reports and admin. Each remote exposes a remoteEntry.js file and depends on a shared library for UI, auth and data access.</desc>
+
+          <text class="d-label" x="20" y="22">shell + remotes</text>
+          <text class="d-label" x="420" y="22" text-anchor="end">Angular 20 · Nx</text>
+
+          <!-- links shell to remotes -->
+          <path class="d-link" d="M220 108 C220 152, 80 150, 80 196"></path>
+          <path class="d-link" d="M220 108 L220 196"></path>
+          <path class="d-link" d="M220 108 C220 152, 360 150, 360 196"></path>
+          <path class="d-flow" d="M220 108 C220 152, 80 150, 80 196"></path>
+          <path class="d-flow" d="M220 108 L220 196"></path>
+          <path class="d-flow" d="M220 108 C220 152, 360 150, 360 196"></path>
+
+          <!-- shell -->
+          <rect class="d-shell" x="130" y="44" width="180" height="64" rx="8"></rect>
+          <text class="d-title" x="220" y="72" text-anchor="middle">shell</text>
+          <text class="d-label" x="220" y="93" text-anchor="middle">host · routes · auth</text>
+
+          <!-- remotes -->
+          <rect class="d-remote" x="20" y="196" width="120" height="60" rx="8"></rect>
+          <text class="d-name" x="80" y="222" text-anchor="middle">orders</text>
+          <text class="d-label" x="80" y="242" text-anchor="middle">remoteEntry.js</text>
+
+          <rect class="d-remote" x="160" y="196" width="120" height="60" rx="8"></rect>
+          <text class="d-name" x="220" y="222" text-anchor="middle">reports</text>
+          <text class="d-label" x="220" y="242" text-anchor="middle">remoteEntry.js</text>
+
+          <rect class="d-remote" x="300" y="196" width="120" height="60" rx="8"></rect>
+          <text class="d-name" x="360" y="222" text-anchor="middle">admin</text>
+          <text class="d-label" x="360" y="242" text-anchor="middle">remoteEntry.js</text>
+
+          <!-- shared lib -->
+          <path class="d-dep" d="M80 256 L80 290"></path>
+          <path class="d-dep" d="M220 256 L220 290"></path>
+          <path class="d-dep" d="M360 256 L360 290"></path>
+          <rect class="d-shared" x="40" y="290" width="360" height="36" rx="6"></rect>
+          <text class="d-label" x="220" y="313" text-anchor="middle">libs/shared · ui · auth · data-access</text>
+        </svg>
+        <figcaption>Each remote is its own app. It builds, tests and deploys on its own schedule, and the shell loads it when a user needs it.</figcaption>
+      </figure>
+    </div>
+
+    <section id="services" aria-labelledby="services-h">
+      <div class="sec-head">
+        <p class="rail-label">Services</p>
+        <div>
+          <h2 id="services-h">Three ways I can help</h2>
+          <p class="sec-intro">Each one fits a part-time schedule and is scoped up front, so you know what you will get and when.</p>
+        </div>
+      </div>
+      <div class="services">
+        <article class="service">
+          <h3>Angular upgrades</h3>
+          <p>Move an app from an older Angular version to a current one without stopping feature work. I start with a dependency audit, plan the <code>ng update</code> path one major version at a time, then fix builds, tests and deprecated APIs along the way.</p>
+          <p class="scope">Usually fixed price. Audit first, then milestones.</p>
+        </article>
+        <article class="service">
+          <h3>Micro-frontends with Nx</h3>
+          <p>Split a large app into parts that build and deploy on their own, or clean up a setup that has grown hard to manage. Shell and remotes, shared libraries, routing between apps, and build pipelines.</p>
+          <p class="scope">Fixed scope or hourly.</p>
+        </article>
+        <article class="service">
+          <h3>Part-time Angular engineering</h3>
+          <p>An experienced extra developer for your team. Features, reusable components, code reviews and performance fixes, with daily overlap in your morning or afternoon.</p>
+          <p class="scope">Hourly. 10 to 30 hours a week.</p>
+        </article>
+      </div>
+      <p class="aside-note">I also work on the API side when a feature needs it, with Node.js, Express, NestJS and PostgreSQL.</p>
+    </section>
+
+    <section id="work" aria-labelledby="work-h">
+      <div class="sec-head">
+        <p class="rail-label">Work</p>
+        <div>
+          <h2 id="work-h">Selected work</h2>
+          <p class="sec-intro">Projects across enterprise platforms, retail, real estate, healthcare and internal tools.</p>
+        </div>
+      </div>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="when">Now</span>
+          <span>Current role</span>
+          <span>Angular developer</span>
+        </div>
+        <div class="case-body">
+          <h3>Enterprise micro-frontend platform</h3>
+          <p>Building and maintaining features in a polyrepo of Angular micro-frontends managed with Nx. Each app lives in its own repository and ships on its own schedule. Client details are kept private.</p>
+          <p class="stack">Angular 20 · Nx · micro-frontends · TypeScript · RxJS</p>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="when">Cartzy</span>
+          <span>Client: Reliance Smart Points</span>
+          <span>Front-end developer</span>
+        </div>
+        <div class="case-body">
+          <h3>Retail platform on a microservices back end</h3>
+          <p>I built the Monitor, Stream and Marking modules, plus a reusable data table with sorting that the other modules share.</p>
+          <p class="stack">Angular 14 · Angular Material · Bootstrap 4 · TypeScript · microservices</p>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="when">LYNK Manager</span>
+          <span>Real estate CRM</span>
+          <span>Front-end developer</span>
+        </div>
+        <div class="case-body">
+          <h3>Web CRM for real estate sales</h3>
+          <p>I built the dashboard, lots, contacts and mail modules, the e-signature flow with Yousign, and role-based access settings.</p>
+          <p class="stack">Angular 9 · Node.js (Express) · Firebase · Yousign · Bootstrap</p>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="when">VIRUJH</span>
+          <span>Online medical consultations</span>
+          <span>Back-end developer</span>
+        </div>
+        <div class="case-body">
+          <h3>APIs for booking doctor consultations</h3>
+          <p>I built the endpoints for scheduling online consultations, finding hospitals and doctors, and managing appointment slots.</p>
+          <p class="stack">NestJS · PostgreSQL · Socket.io · OpenVidu · AWS (EC2, S3, Redis) · Jenkins · nginx</p>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="when">Earlier</span>
+          <span>Internal tools and client apps</span>
+        </div>
+        <div class="case-body">
+          <ul class="earlier">
+            <li>
+              <strong>AMT, attendance management tool</strong>
+              <span>Dashboard, employees, visitors, transport, leave requests and attendance modules.</span>
+              <span class="stack">Angular 9 · Angular Material · Bootstrap</span>
+            </li>
+            <li>
+              <strong>Utiliko, business management suite</strong>
+              <span>Email, invoices, expense tracking, tasks, leave and project management modules.</span>
+              <span class="stack">Angular 7 · Node.js · Angular Material · Bootstrap</span>
+            </li>
+            <li>
+              <strong>MRGN, organization management</strong>
+              <span>Back-end APIs for employees, profiles, work allocation and logins.</span>
+              <span class="stack">Node.js · Express · MySQL · Nodemailer</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section id="experience" aria-labelledby="xp-h">
+      <div class="sec-head">
+        <p class="rail-label">Experience</p>
+        <div>
+          <h2 id="xp-h">Where I have worked</h2>
+        </div>
+      </div>
+      <ol class="xp">
+        <li class="xp-row">
+          <span class="xp-date">Now</span>
+          <span><span class="xp-role">Angular developer</span><span class="xp-org">Enterprise micro-frontend platform · Angular 20, Nx</span></span>
+        </li>
+        <li class="xp-row">
+          <span class="xp-date">Jul 2023 – Jan 2025</span>
+          <span><span class="xp-role">Frontend Engineer</span><span class="xp-org">Soham.Ai Intelligence · Hyderabad</span></span>
+        </li>
+        <li class="xp-row">
+          <span class="xp-date">Nov 2022 – Jun 2023</span>
+          <span><span class="xp-role">Full-stack Developer</span><span class="xp-org">Jukshio Technology Innovation · Hyderabad</span></span>
+        </li>
+        <li class="xp-row">
+          <span class="xp-date">Dec 2019 – Oct 2022</span>
+          <span><span class="xp-role">Associate Software Engineer</span><span class="xp-org">Softsuave Technologies · Chennai</span></span>
+        </li>
+        <li class="xp-row">
+          <span class="xp-date">2020</span>
+          <span><span class="xp-role">B.Tech</span><span class="xp-org">BVCITS, Amalapuram · CGPA 8.3</span></span>
+        </li>
+      </ol>
+    </section>
+
+    <section id="toolkit" aria-labelledby="kit-h">
+      <div class="sec-head">
+        <p class="rail-label">Toolkit</p>
+        <div>
+          <h2 id="kit-h">What I work with</h2>
+        </div>
+      </div>
+      <dl class="kit">
+        <div>
+          <dt>Angular &amp; front end</dt>
+          <dd>Angular (7 through 20), TypeScript, JavaScript, RxJS, NgRx, HTML, SCSS</dd>
+        </div>
+        <div>
+          <dt>Architecture</dt>
+          <dd>Micro-frontends, Nx polyrepo setups, reusable component design</dd>
+        </div>
+        <div>
+          <dt>UI</dt>
+          <dd>Angular Material, Bootstrap, responsive layouts</dd>
+        </div>
+        <div>
+          <dt>Back end</dt>
+          <dd>Node.js, Express, NestJS, Socket.io</dd>
+        </div>
+        <div>
+          <dt>Data &amp; cloud</dt>
+          <dd>PostgreSQL, MySQL, Firebase, AWS (EC2, S3, Redis)</dd>
+        </div>
+        <div>
+          <dt>Integrations &amp; delivery</dt>
+          <dd>Stripe, Razorpay, Twilio, Yousign, Nodemailer, Git, Jenkins, Agile and Scrum</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-h">
+      <div class="sec-head">
+        <p class="rail-label">Hire me</p>
+        <div>
+          <h2 id="contact-h">Need help with an Angular app?</h2>
+          <p class="sec-intro">Send me a message on Upwork. I will reply with questions or a rough plan, and we can agree the scope there before any work starts.</p>
+          <dl class="brief">
+            <div>
+              <dt>What to include</dt>
+              <dd>What the app does, which Angular version it runs on today, and what you need: an upgrade, a micro-frontend setup, or help with features.</dd>
+            </div>
+            <div>
+              <dt>Time</dt>
+              <dd>How many hours a week you need, or the deadline for a fixed-scope project.</dd>
+            </div>
+            <div>
+              <dt>Access</dt>
+              <dd>Whether I can see the code before quoting. A short look at the repository makes estimates for upgrades much more accurate.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Dharani Antharvedi · Angular developer</span>
+    <span>IST (UTC+5:30)</span>
+  </footer>
+</div>
+</body>
+</html>
